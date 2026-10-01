@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kas Tiara Heritage Barbershop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="#dashboard" data-view="dashboard">
+                <span class="brand-mark">T</span>
+                <span><strong>Tiara</strong><small>Kas Barbershop</small></span>
+            </a>
+            <nav class="side-nav" aria-label="Navigasi utama">
+                <button type="button" class="side-link aktif" data-view="dashboard"><span aria-hidden="true">▦</span><span>Dashboard</span></button>
+                <button type="button" class="side-link" data-view="transaksi"><span aria-hidden="true">＋</span><span>Transaksi</span></button>
+                <button type="button" class="side-link" data-view="riwayat"><span aria-hidden="true">☷</span><span>Riwayat</span></button>
+                <button type="button" class="side-link" data-view="laporan"><span aria-hidden="true">▤</span><span>Laporan</span></button>
+            </nav>
+            <footer class="sidebar-footer">Keuangan Barbershop<small>© 2026 Tiara - Pencatatan Kas Barbershop</small></footer>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header">
+                <div><p class="eyebrow">MANAJEMEN KEUANGAN</p><h1 id="judulHalaman">Kas Barbershop</h1></div>
+                <time class="date-badge" id="tanggalHeader"></time>
+            </header>
+
+        <section id="dashboardView" class="halaman">
+            <div class="dashboard-header">
+                <div>
+                    <h3>Ringkasan Kas</h3>
+                    <p>Ikhtisar pemasukan dan pengeluaran barbershop</p>
+                </div>
+                <button type="button" id="tombolTransaksiBaru">+ Transaksi Baru</button>
+            </div>
+
+            <div class="stat-grid">
+                <article class="stat-card"><div><span>Saldo Kas</span><strong id="saldo">Rp 0</strong></div><span class="stat-icon biru">▰</span></article>
+                <article class="stat-card"><div><span>Total Kas Masuk</span><strong id="kasMasuk">Rp 0</strong></div><span class="stat-icon hijau">↗</span></article>
+                <article class="stat-card"><div><span>Total Kas Keluar</span><strong id="kasKeluar">Rp 0</strong></div><span class="stat-icon merah">↘</span></article>
+                <article class="stat-card"><div><span>Total Transaksi</span><strong id="jumlahTransaksi">0</strong></div><span class="stat-icon kuning">#</span></article>
+            </div>
+
+            <div class="dashboard-grid">
+                <div id="dashboardFormSlot"></div>
+                <aside class="panel summary-panel">
+                    <h2>Ringkasan</h2>
+                    <p>Informasi transaksi saat ini.</p>
+                    <div class="summary-line"><span><i class="dot hijau"></i>Kas Masuk</span><strong id="ringkasanMasuk">Rp 0</strong></div>
+                    <div class="summary-line"><span><i class="dot merah"></i>Kas Keluar</span><strong id="ringkasanKeluar">Rp 0</strong></div>
+                    <div class="usage-label"><span>Penggunaan Kas</span><span id="persentasePenggunaan">0%</span></div>
+                    <div class="usage-track"><span id="barPenggunaan"></span></div>
+                    <div class="tips-box"><strong>Tips</strong><p>Catat transaksi segera agar ringkasan kas tetap akurat.</p></div>
+                </aside>
+            </div>
+
+            <section class="table-container">
+                <div class="section-header">
+                    <h3>Transaksi Terbaru</h3>
+                    <button type="button" class="sekunder" id="tombolLihatSemua">Lihat Semua</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Jenis Kas</th>
+                            <th>Keterangan</th>
+                            <th>Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelTerbaru"></tbody>
+                </table>
+            </section>
+        </section>
+
+        <section id="transaksiView" class="halaman" hidden>
+            <h3>Kelola Transaksi</h3>
+            <form class="form-container" id="formTransaksi" novalidate>
+                <h3>Input Data Transaksi</h3>
+                <label for="tanggal">Tanggal</label>
+                <input type="date" id="tanggal" required>
+
+                <label for="namaPegawai">Nama Pegawai</label>
+                <input type="text" id="namaPegawai" placeholder="Ketik nama pegawai" maxlength="100" required>
+
+                <label for="jabatanPegawai">Jabatan Pegawai</label>
+                <input type="text" id="jabatanPegawai" placeholder="Contoh: Barber" maxlength="50" required>
+
+                <label for="namaPelanggan">Nama Pelanggan (opsional)</label>
+                <input type="text" id="namaPelanggan" placeholder="Ketik nama pelanggan" maxlength="100">
+
+                <label for="noHpPelanggan">Nomor HP Pelanggan (opsional)</label>
+                <input type="tel" id="noHpPelanggan" placeholder="Contoh: 081234567890" maxlength="20">
+
+                <fieldset class="type-fieldset">
+                    <legend>Jenis Transaksi</legend>
+                    <div class="segmented-control">
+                        <label><input type="radio" name="tipeKas" value="Masuk" checked><span>Kas Masuk</span></label>
+                        <label><input type="radio" name="tipeKas" value="Keluar"><span>Kas Keluar</span></label>
+                    </div>
+                </fieldset>
+
+                <label for="jenisKas">Kategori</label>
+                <select id="jenisKas" required><option value="">-- Pilih Kategori --</option></select>
+
+                <label for="keterangan">Keterangan</label>
+                <input type="text" id="keterangan" placeholder="Masukkan keterangan" maxlength="200">
+
+                <label for="jumlah">Nominal</label>
+                <div class="nominal-input"><span>Rp</span><input type="number" id="jumlah" placeholder="0" min="0.01" step="0.01" required></div>
+
+                <button id="tombolSimpan" type="submit">Simpan Transaksi</button>
+                <button id="tombolBatalEdit" class="sekunder" type="button" hidden>Batal Edit</button>
+            </form>
+
+            <section class="table-container">
+                <div class="section-header"><h3>Riwayat Transaksi</h3><button type="button" class="danger-outline" id="tombolHapusSemua">Hapus Semua</button></div>
+                <div class="filter-grid">
+                    <input type="search" id="cariTransaksi" placeholder="Cari keterangan atau kategori...">
+                    <select id="filterTipe"><option value="">Semua Transaksi</option><option value="Masuk">Kas Masuk</option><option value="Keluar">Kas Keluar</option></select>
+                    <select id="filterKategori"><option value="">Semua Kategori</option></select>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tanggal</th>
+                            <th>Pegawai</th>
+                            <th>Pelanggan</th>
+                            <th>Jenis Kas</th>
+                            <th>Keterangan</th>
+                            <th>Jumlah</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelTransaksi"></tbody>
+                </table>
+                <p class="table-count" id="jumlahHasilRiwayat"></p>
+            </section>
+        </section>
+
+        <section id="laporanView" class="halaman" hidden>
+            <section class="table-container">
+                <h3>Laporan Kas</h3>
+                <p>Laporan pemasukan dan pengeluaran Barbershop.</p>
+                <div class="report-filters">
+                    <div><label for="tanggalMulai">Tanggal Mulai</label><input type="date" id="tanggalMulai"></div>
+                    <div><label for="tanggalAkhir">Tanggal Akhir</label><input type="date" id="tanggalAkhir"></div>
+                    <button type="button" id="tombolTampilkanLaporan">⌕ Tampilkan</button>
+                    <button type="button" class="sekunder" id="tombolResetLaporan">Reset</button>
+                </div>
+                <div class="report-stats">
+                    <article><span>Total Kas Masuk</span><strong id="laporanMasuk">Rp 0</strong></article>
+                    <article><span>Total Kas Keluar</span><strong id="laporanKeluar">Rp 0</strong></article>
+                    <article><span>Saldo Akhir</span><strong id="laporanSaldo">Rp 0</strong></article>
+                    <article><span>Jumlah Transaksi</span><strong id="laporanJumlah">0</strong></article>
+                </div>
+                <div class="report-actions"><button type="button" class="sekunder" id="tombolCetak">▣ Cetak / PDF</button><button type="button" id="tombolExport">▥ Export Excel</button></div>
+                <table>
+                    <thead><tr><th>No</th><th>Tanggal</th><th>Jenis</th><th>Kategori</th><th>Keterangan</th><th>Nominal</th></tr></thead>
+                    <tbody id="tabelLaporan"></tbody>
+                </table>
+            </section>
+        </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="../backend/supabase/config.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
