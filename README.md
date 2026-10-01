@@ -46,6 +46,6 @@ Fitur utama: dashboard saldo, input transaksi, riwayat dengan pencarian/filter, 
 2. Jalankan `database/database.sql` melalui Supabase SQL Editor.
 3. Buka `frontend/index.html` langsung dari folder atau sajikan folder repo melalui web server.
 
-Detail instalasi, alur CRUD, skema, deployment, dan keamanan ada di [Panduan Sistem](docs/panduan-sistem.md).
+Detail instalasi, alur CRUD, skema, deployment, dan keamanan ada di [Panduan Sistem](docs/panduan-sistem.md). Penjelasan ERD dan relasi tabel tersedia di [Dokumentasi Skema Sistem Kas](docs/skema-sistem-kas.md).
 
 > SQL saat ini mengaktifkan akses `anon` tanpa login untuk demo. Jangan gunakan kebijakan tersebut untuk pencatatan keuangan produksi tanpa menambahkan autentikasi dan membatasi akses.
